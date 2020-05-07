@@ -30,4 +30,17 @@ public class GreetingController {
 		LOG.info("Greeting: " + greetingProperties.getGreeting());
 		return greetingProperties.getGreeting();
 	}
+
+	@RequestMapping("/label")
+	public String getLabel(){
+		LOG.info("Label: " + greetingProperties.getLabel());
+		return greetingProperties.getLabel();
+	}
+
+	@RequestMapping("/labels/{languageCode}")
+	public String getLabel(@PathVariable String languageCode){
+		LOG.info("Language Code: " + languageCode);
+		LOG.info("Label: " + greetingProperties.getLabels().get(languageCode.toUpperCase()));
+		return greetingProperties.getLabels().getOrDefault(languageCode.toUpperCase(), greetingProperties.getLabel());
+	}
 }
